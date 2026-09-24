@@ -13,7 +13,7 @@ typeset -U path
 # =========================================================
 export DOTFILES="$HOME/Dev/dotfiles"
 export DEV="$HOME/Dev"
-export HDS="$DEV/HDS"
+export LOGIQ="$DEV/logiq-systems"
 export NOTES="$HOME/Documents/obsidian-vault"
 
 if [[ "$(uname)" == "Darwin" ]]; then
@@ -130,7 +130,7 @@ alias history='fc -li 1'
 # =========================================================
 alias please='sudo'
 alias cdev='cd $DEV'
-alias cdev-hds='cd $HDS'
+alias cdevl='cd $LOGIQ'
 alias cdotfiles='cd $DEV/dotfiles'
 alias c='clear'
 alias hgrep="history | grep"
@@ -140,10 +140,26 @@ alias copy="pbcopy"
 alias paste="pbpaste"
 alias write-secrets='$EDITOR ~/afterzsh/aliases.sh'
 
+# Set current tmux pane background to a subtle blue
+alias bgb="tmux select-pane -P 'bg=#1b2430'"
+
+# Set current tmux pane background to a subtle red
+alias bgr="tmux select-pane -P 'bg=#2b1b1b'"
+
+# Reset current tmux pane background to the default color
+alias bgd="tmux select-pane -P 'bg=default'"
+
 export LOCAL_SECRETS="$HOME/afterzsh"
 if [[ -f "$LOCAL_SECRETS/aliases.sh" ]]; then
     source "$LOCAL_SECRETS/aliases.sh"
 fi
+
+
+
+# =========================================================
+# Section 5: Path Setting for Tools
+# Keep at bottom of file and DO NOT change order
+# =========================================================
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#999999"
@@ -172,7 +188,7 @@ for _conda_path in \
 done
 unset _conda_path
 
-# Pyenv initialization (Fixed invalid --install flag)
+# Pyenv initialisation (Fixed invalid --install flag)
 export PYENV_ROOT="$HOME/.pyenv"
 if [[ -d $PYENV_ROOT/bin ]]; then
     export PATH="$PYENV_ROOT/bin:$PATH"
@@ -181,7 +197,7 @@ elif command -v pyenv >/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
-# NVM initialization
+# NVM initialisation
 export NVM_DIR="$HOME/.nvm"
 if [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
     source "/opt/homebrew/opt/nvm/nvm.sh"
